@@ -49,7 +49,7 @@ class _BitcoinButtonState extends State<BitcoinButton> {
 
   Widget _handleState(ButtonState state) {
     if (state is LoadingState) {
-      return Center(child: CircularProgressIndicator(backgroundColor: Colors.white,));
+      return Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),));
     } else if (state is ErrorState) {
       _showSnackBar(state.errorMessage);
     }
