@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_app/data/network/bitcoin_client.dart';
-import 'package:test_app/data/repository/bitcoin_repository.dart';
+import 'package:injector/injector.dart';
 import 'package:test_app/domain/interactor/bitcoin_interactor.dart';
 import 'package:test_app/presentation/blocs/button_cubit.dart';
-import 'package:http/http.dart' as http;
 
 /// Кнопка, по нажатию на которой будет осуществлен поиск цены биткоина, а после того, как онная будет найдена,
 /// она же будет отображена на кнопке. По повторному нажатию будет возвращено изначальное состояние кнопки
@@ -18,7 +16,10 @@ class _BitcoinButtonState extends State<BitcoinButton> {
   
   @override
   void initState() {
-    _cubit = ButtonCubit(BitcoinInteractor(BitcoinRepositoryImpl(BitcoinClient(http.Client()))));
+    final injector = Injector.appInstance;
+    _cubit = ButtonCubit(
+      injector.get<BitcoinInteractor>(),
+    );
     super.initState();
   }
 

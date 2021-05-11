@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/di/dependency_injection.dart';
 import 'package:test_app/presentation/screens/bitcoin_screen.dart';
 
-void main() {
+void main() async {
+  await DependencyInjection().initDependencies();
   runApp(MyApp());
 }
 
