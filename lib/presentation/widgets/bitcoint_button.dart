@@ -21,6 +21,12 @@ class _BitcoinButtonState extends State<BitcoinButton> {
     _cubit = ButtonCubit(BitcoinInteractor(BitcoinRepositoryImpl(BitcoinClient(http.Client()))));
     super.initState();
   }
+
+  @override
+  void dispose() {
+    _cubit.close();
+    super.dispose();
+  }
   
   @override
   Widget build(BuildContext context) {
